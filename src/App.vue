@@ -5,11 +5,25 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios'
 
 export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  data() {
+    return {
+      answer: [],
+    };
+  },
+  methods:{
+    async getAnswer() {
+      const { data } = await axios.get(
+        "https://rickandmortyapi.com/api/character"
+      );
+      this.answer = data.results;
+    },
   }
 }
 </script>
